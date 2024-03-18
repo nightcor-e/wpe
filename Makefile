@@ -1,13 +1,13 @@
 SRC := ./src
 OUT := ./out
 
-COMPILER := g++
+COMPILER := gcc
 CFLAGS := -O3
 
 LIBS := -lSDL2main -lSDL2 -lSDL2_Image -lavformat -lavcodec -lavutil -mwindows
-OBJS := $(patsubst %.cpp, $(OUT)/%.o, main.cpp player.cpp)
+OBJS := $(patsubst %.c, $(OUT)/%.o, main.c engine.c player.c utils.c)
 
-$(OUT)/%.o: $(SRC)/%.cpp
+$(OUT)/%.o: $(SRC)/%.c
 	$(COMPILER) $(CFLAGS) -c $< -o $@ -I $(SRC) $(LIBS)
 
 $(OUT)/WPE.exe: $(OBJS)
