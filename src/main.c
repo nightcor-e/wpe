@@ -8,7 +8,12 @@
 
 int main(int argc, char *argv[]) {
   Engine engine;
-  Player player;
+  Player player = {
+    .formatContext = NULL,
+    .videoCodec = NULL,
+    .codecParameters = NULL,
+  };
+
   SDL_Event event;
 
   const char *path = argv[1];
