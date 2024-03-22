@@ -9,4 +9,4 @@ typedef struct Engine {
 } Engine;
 
 void Init(Engine *engine);
-void Clean(Engine *engine);
+void Destroy(Engine *engine);

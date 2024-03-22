@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT) {
-      Clean(&engine);
+      Destroy(&engine);
       RemoveTexture(&player);
 
       return 0;

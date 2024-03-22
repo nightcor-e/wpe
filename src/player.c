@@ -13,23 +13,21 @@ void CreateTexture(Player *player, Engine *engine, const char *path) {
       break;
     }
   }
+  
+  if (player->streamIndex == -1 || player->codecParameters == NULL) return;
+  player->videoCodec = avcodec_find_decoder(player->codecParameters->codec_id);
 
-  if (player->streamIndex != -1 && player->codecParameters != NULL) {
-    player->videoCodec = avcodec_find_decoder(player->codecParameters->codec_id);
+  if (!player->videoCodec) return;
+  player->codecContext = avcodec_alloc_context3(player->videoCodec);
 
-    if (player->videoCodec) {
-      player->codecContext = avcodec_alloc_context3(player->videoCodec);
+  if (!player->codecContext ||
+      avcodec_parameters_to_context(player->codecContext, player->codecParameters) < 0 ||
+      avcodec_open2(player->codecContext, player->videoCodec, NULL) < 0) return;
+  player->frame = av_frame_alloc();
 
-      if (player->codecContext && avcodec_parameters_to_context(player->codecContext, player->codecParameters) >= 0) {
-        if (avcodec_open2(player->codecContext, player->videoCodec, NULL) >= 0) {
-          player->frame = av_frame_alloc();
-
-          engine->texture = SDL_CreateTexture(engine->renderer, SDL_PIXELFORMAT_YV12,
-            SDL_TEXTUREACCESS_STREAMING, player->codecContext->width, player->codecContext->height);
-        }
-      }
-    }
-  }
+  engine->texture = SDL_CreateTexture(
+    engine->renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING,
+    player->codecContext->width, player->codecContext->height);
 }
 
 void UpdateTexture(Player *player, Engine *engine) {

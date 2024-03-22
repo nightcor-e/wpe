@@ -12,7 +12,7 @@ void Init(Engine *engine) {
   }
 }
 
-void Clean(Engine *engine) {
+void Destroy(Engine *engine) {
   SDL_DestroyTexture(engine->texture);
   SDL_DestroyWindow(engine->window);
   SDL_DestroyRenderer(engine->renderer);
