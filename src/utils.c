@@ -13,7 +13,7 @@ HWND GetDesktopW() {
   HWND progman = FindWindow("ProgMan", NULL);
   HWND desktop = NULL;
 
-  SendMessageTimeout(progman, 0x052C, 0, 0, 0x0000, 1000, NULL);
+  SendMessageTimeout(progman, 0x052C, 0, 0, SMTO_NORMAL, 1000, NULL);
   EnumWindows(EnumWindowsProc, (LPARAM)&desktop);
 
   return desktop;

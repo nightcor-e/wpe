@@ -44,13 +44,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
       GetWindowTextA(textbox, buffer, MAX_PATH);
 
-      if (!access((char *)buffer, 0) == 0) {
+      if (!access(buffer, 0) == 0) {
         MessageBox(NULL, "Path error!", "Error!", MB_ICONEXCLAMATION | MB_OK);
         break;
       }
 
       Init(&engine);
-      CreateTexture(&player, &engine, (char *)buffer);
+      CreateTexture(&player, &engine, buffer);
       DestroyWindow(hwnd);
 
       while (1) {

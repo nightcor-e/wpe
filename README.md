@@ -1,18 +1,10 @@
 <div align="center">
-  <img width=200 height=200 src="assets/davinci.png" />
+  <img width=200 height=200 src="assets/yuki.png" />
   <br />
   Wallpaper Engine made with SDL2
   <hr />
 </div>
 <p>To run this software, you need the DLLs for FFmpeg and SDL2. Make sure to have these DLLs available in the system before executing the program.</p>
-
-<h2>Execution</h2>
-
-<p>When running the program from the console, it is necessary to provide a specific argument to indicate the path of the file that will be used as wallpaper.</p>
-
-<pre>./WPE.exe file_path</pre>
-
-<p>Replace <code>file_path</code> with the full path to the file you want to use as wallpaper.</p>
 
 <h2>Required DLLs</h2>
 
