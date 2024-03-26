@@ -4,7 +4,7 @@ OUT := ./out
 COMPILER := gcc
 CFLAGS := -O3
 
-LIBS := -lSDL2main -lSDL2 -lSDL2_Image -lavformat -lavcodec -lavutil -mwindows
+LIBS := -lSDL2 -lSDL2_Image -lavformat -lavcodec -lavutil -lcomdlg32
 OBJS := $(patsubst %.c, $(OUT)/%.o, main.c engine.c player.c utils.c)
 
 $(OUT)/%.o: $(SRC)/%.c
